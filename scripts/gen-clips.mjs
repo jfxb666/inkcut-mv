@@ -39,9 +39,18 @@ const SHOTS = plan.shots;
 mkdirSync(C.clips, { recursive: true });
 
 for (const s of SHOTS) {
-  if (!refs[s.ref]) throw new Error(`shot ${s.id} references "${s.ref}" which is not in work/refs.json`);
+  if (!refs[s.ref]) {
+    console.error(`shot ${s.id} references "${s.ref}" which is not in work/refs.json`);
+    console.error("keys available: " + Object.keys(refs).filter((k) => !["projectId", "title"].includes(k)).join(", "));
+    process.exit(1);
+  }
   const f = join(C.prompts, s.id + ".txt");
-  if (!existsSync(f)) throw new Error(`missing prompt file ${f}`);
+  if (!existsSync(f)) {
+    console.error("missing prompt file " + f);
+    console.error("write one per shot (see docs/PROMPTS.md), or start from the example:");
+    console.error("  cp example/dongmian/prompts/*.txt work/prompts/");
+    process.exit(1);
+  }
 }
 
 const run = (args) => execFileSync("node", [join(SKILL, "scripts/video.mjs"), ...args],

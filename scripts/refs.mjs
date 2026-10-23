@@ -38,5 +38,5 @@ if (!pairs.length) {
 const title = JSON.parse(readFileSync(join(C.ROOT, "project.config.json"), "utf8")).title || "inkcut";
 mkdirSync(C.work, { recursive: true });
 const out = join(C.work, "refs.json");
+// setup-refs.mjs already prints the path it wrote, with stdio inherited.
 execFileSync("node", [join(SKILL, "scripts/setup-refs.mjs"), title, out, ...pairs], { stdio: "inherit" });
-console.log("wrote " + out);
