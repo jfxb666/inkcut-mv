@@ -66,9 +66,48 @@ const framing = (k: number, seed: number): Cam => {
   };
 };
 
-const PlateLayer: React.FC<{ src: string; cam: Cam; focus: [number, number] }> = ({ src, cam, focus }) => (
+/**
+ * Stand-in art for a shot whose plate has not been generated yet: layered ink washes, a
+ * horizon, and a couple of paper-cut ridge silhouettes. It is deliberately abstract - it
+ * exists so that a preview before the first generation looks like a film rather than a
+ * missing-image icon, and so nobody is tempted to skip authoring the plates.
+ */
+const ProceduralPlate: React.FC<{ seed: number }> = ({ seed }) => {
+  const ridges = [0, 1, 2].map((i) => {
+    const y = 52 + i * 13 + rnd(i, seed) * 8;
+    const amp = 4 + rnd(i, seed + 3) * 7;
+    const phase = rnd(i, seed + 7) * 6.28;
+    const pts = Array.from({ length: 13 }, (_, k) => {
+      const x = (k / 12) * 100;
+      const yy = y + Math.sin(phase + k * 0.9) * amp;
+      return `${x.toFixed(1)}% ${yy.toFixed(1)}%`;
+    });
+    return { i, pts };
+  });
+  return (
+    <AbsoluteFill style={{ background: `linear-gradient(180deg, ${C.ink} 0%, ${C.indigoDeep} 46%, ${C.mist} 100%)` }}>
+      <AbsoluteFill style={{ background: `radial-gradient(ellipse 70% 50% at ${30 + rnd(0, seed) * 40}% 30%, rgba(242,240,234,0.24), rgba(242,240,234,0) 70%)` }} />
+      {ridges.map(({ i, pts }) => (
+        <AbsoluteFill
+          key={i}
+          style={{
+            clipPath: `polygon(0% 100%, ${pts.join(", ")}, 100% 100%)`,
+            background: `linear-gradient(180deg, rgba(11,15,20,${0.42 + i * 0.2}), ${C.ink})`,
+            opacity: 0.9,
+          }}
+        />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+const PlateLayer: React.FC<{ src: string | null; cam: Cam; focus: [number, number]; seed: number }> = ({ src, cam, focus, seed }) => (
   <AbsoluteFill style={{ transform: `translate(${focus[0]}px, ${focus[1]}px) scale(${cam.s}) translate(${cam.x}px, ${cam.y}px) rotate(${cam.r}deg)` }}>
-    <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+    {src ? (
+      <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+    ) : (
+      <ProceduralPlate seed={seed} />
+    )}
   </AbsoluteFill>
 );
 
@@ -180,7 +219,7 @@ export const ShotLayer: React.FC<{ shot: Shot; t: number }> = ({ shot, t }) => {
           h={asset.h}
         />
       ) : (
-        <PlateLayer src={asset.plate} cam={cam} focus={focus} />
+        <PlateLayer src={asset.plate} cam={cam} focus={focus} seed={seed} />
       )}
       <InkDepth t={t} amount={0.22 + low * 0.22} />
       {warmth > 0 ? (

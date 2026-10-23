@@ -3,7 +3,7 @@
 // render or a paid generation batch.
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { extname, join } from "node:path";
 import { C } from "./config.mjs";
 import { anyPython, resolvePython } from "./python.mjs";
 
@@ -55,9 +55,16 @@ for (const f of ["simkai.ttf", "NotoSansSC-VF.ttf", "simhei.ttf"]) {
   existsSync(join(C.publicAssets, f)) ? ok("font " + f)
     : warn(`font ${f} missing from ${C.publicAssets} - CJK text falls back to a system font; run: npm run fonts`);
 }
+// These two are committed so a fresh clone type-checks and previews. They hold the EXAMPLE
+// song's measurements, so they are only correct for your song after analyze has rewritten them.
 for (const f of ["lyrics.ts", "drive.ts"]) {
-  existsSync(join(C.composeSrc, f)) ? ok(`${f} generated`) : warn(`${f} not generated yet - run: npm run analyze`);
+  existsSync(join(C.composeSrc, f))
+    ? ok(`${f} present (example data until you run analyze on your own song)`)
+    : warn(`${f} not generated yet - run: npm run analyze`);
 }
+existsSync(join(C.publicAssets, "song" + extname(C.audio)))
+  ? ok("published audio " + "song" + extname(C.audio))
+  : warn(`audio not published into ${C.publicAssets} yet - run: npm run analyze`);
 
 console.log("\noptional generators");
 const agnes = process.env.AGNES_KEY || existsSync(join(C.ROOT, ".agnes_key")) || existsSync(join(process.env.USERPROFILE || process.env.HOME || "", ".agnes_key"));

@@ -7,7 +7,8 @@ export type ShotAsset = {
   clipDur: number;
   w: number;
   h: number;
-  plate: string;
+  /** null until the plate has been generated; the composition then draws a procedural backdrop. */
+  plate: string | null;
 };
 
 export const SHOT_ASSETS: Record<string, ShotAsset> = {
@@ -22,4 +23,4 @@ export const SHOT_ASSETS: Record<string, ShotAsset> = {
   s09: { id: "s09", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s09.png" },
 };
 
-export const AUDIO_SRC = "ong.mp3";
+export const AUDIO_SRC = "assets/song.mp3";

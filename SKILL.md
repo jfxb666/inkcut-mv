@@ -133,11 +133,25 @@ them you can still author, preview and render - every shot falls back to its sti
 ## Layout
 
 ```
-scripts/        analyze.py, gen-clips.mjs, sync-assets.mjs, plates.mjs, refs.mjs, doctor.mjs
-src/inkcut/     the composition (Stage, Transitions, LyricLayer, Grade, Snow, MV)
+scripts/        analyze.py + analyze.mjs, gen-clips.mjs, sync-assets.mjs, plates.mjs,
+                refs.mjs, fetch-fonts.mjs, mkseam.py, doctor.mjs, config.mjs, python.mjs
+src/inkcut/     the composition (MV, Stage, Transitions, LyricLayer, Grade, Snow)
 public/tex/     ink masks + seamless paper and grain tiles (shipped)
 public/assets/  your song, fonts, plates, clips (gitignored)
 work/           prompts, refs, clips, analysis output (gitignored)
-example/dongmian/  a finished film: shot table, nine prompts, design doc
-docs/           pipeline, prompts, pitfalls, QA, fonts
+example/dongmian/  a finished film: shot table, nine prompts, design doc, analysis
+docs/           PIPELINE, PROMPTS, NARRATIVE, QA, PITFALLS, FONTS
 ```
+
+## Generator setup
+
+`plates` and `clips` shell out to two other skills; point the environment at them:
+
+```bash
+export AGNES_SKILL=/path/to/generating-images-with-agnes   # still plates
+export PABA_SKILL=/path/to/generating-video-with-paba-h3   # performance footage
+```
+
+The Agnes CLI resolves its key from the **current directory** (`$AGNES_KEY` → `./.agnes_key` →
+`~/.agnes_key`), so `scripts/plates.mjs` always invokes it with `cwd` set to the project root.
+Put `.agnes_key` there, not next to the skill.

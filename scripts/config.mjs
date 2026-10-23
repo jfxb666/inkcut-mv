@@ -31,7 +31,12 @@ export const C = {
  * already relative to public/.
  */
 export const assetPath = (abs) => {
-  const rel = abs.startsWith(C.publicAssets + sep)
+  const inAssets = abs.startsWith(C.publicAssets + sep);
+  const inPublic = abs.startsWith(join(ROOT, "public") + sep);
+  // Slicing a path that is under neither would silently produce a mangled filename
+  // ("ong.mp3" instead of "song.mp3"), so refuse instead of guessing.
+  if (!inAssets && !inPublic) throw new Error(`${abs} is not under public/ - publish it first`);
+  const rel = inAssets
     ? "assets/" + abs.slice(C.publicAssets.length + 1)
     : abs.slice(join(ROOT, "public").length + 1);
   return rel.split(sep).join("/");

@@ -39,7 +39,9 @@ const shotAt = (t: number) => {
 const Interlude: React.FC<{ t: number }> = ({ t }) => {
   const span = INTERLUDE.end - INTERLUDE.start;
   const p = clamp01((t - INTERLUDE.start) / span);
-  const plates = SHOTS.map((s) => SHOT_ASSETS[s.id].plate);
+  // Only shots that actually have art can be flung past the lens; before the first plate
+  // is generated this list is empty and the break plays as the lens closing down.
+  const plates = SHOTS.map((s) => SHOT_ASSETS[s.id].plate).filter((p): p is string => p !== null);
   const n = plates.length;
   // Cards overlap deliberately: at any instant three or four sheets are in flight, so the
   // frame is never empty and never repeats a position. Each one crosses the lens once,
@@ -48,7 +50,7 @@ const Interlude: React.FC<{ t: number }> = ({ t }) => {
   const LIFE = 0.44;
   const cards = [] as React.ReactNode[];
   for (let k = 0; k < n; k++) {
-    const born = (k / (n - 1)) * BORN_SPAN - 0.12; // the first sheet is already mid-air
+    const born = (n > 1 ? k / (n - 1) : 0) * BORN_SPAN - 0.12; // the first sheet is already mid-air
     const q = (p - born) / LIFE;
     if (q < 0 || q > 1) continue;
     const e = q * q * (3 - 2 * q);

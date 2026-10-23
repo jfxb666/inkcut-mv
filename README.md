@@ -27,9 +27,10 @@ npm run analyze
 npm run studio                     # preview at http://localhost:3000
 ```
 
-At this point the film plays with the example shot table and no generated footage at all -
-every shot falls back to its plate. That is deliberate: you can see the timing, the lyric
-sync and the transitions before spending a single generation.
+At this point the film plays with the example shot table and no generated footage at all:
+a shot falls back to its still plate, and a shot with no plate yet falls back to a procedural
+ink backdrop. That is deliberate - you can see the timing, the lyric sync and the transitions
+before spending a single generation.
 
 Then, to replace the example with your own film:
 
