@@ -1,0 +1,18 @@
+node_modules/
+out/
+dist/
+.DS_Store
+.env
+.agnes_key
+
+# your song and its subtitles are yours, not the repo's
+input/*
+!input/.gitkeep
+!input/lyrics.example.txt
+
+# everything generated: analysis, prompts, plates, clips, published assets
+work/*
+!work/.gitkeep
+!work/shots.plan.json
+public/assets/*
+!public/assets/.gitkeep

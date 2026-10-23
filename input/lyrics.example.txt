@@ -1,0 +1,29 @@
+# Optional but strongly recommended.
+#
+# The SRT is a machine transcript: it gets words wrong ("一双无情" for "一双无形",
+# "就方式见面" for "以何种方式见面"), and a wrong character sits in the frame for a whole line.
+# Put the authoritative lyric text here, ONE LINE PER SRT CUE, in sung order. The analysis
+# script then keeps the SRT's timings and replaces the text, and refuses to run if the line
+# counts differ - a mismatch means the two files disagree about the song, which you want to
+# hear about before rendering.
+#
+# Copy this file to input/lyrics.txt and edit.
+好像一双无形抓不住的手
+悄悄把那段时光带走
+再也回不去那年的冬
+不会再有人等我太久
+要如何纪念
+曾经那些年
+我把孤独溶解在深夜某年的某月
+再重逢以何种方式见面
+破旧的你即使有再多的遗憾
+相同地点的相片却找不回另一半
+你听呐雪花掩盖着哽咽
+叹息着离别
+你听啊秋末的落叶
+你听它叹息着离别
+只剩我独自领略
+海与山风和月
+你听啊冬至的白雪
+你听它掩饰着哽咽
+在没有你的世界

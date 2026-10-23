@@ -1,0 +1,11 @@
+{
+  "title": "inkcut",
+  "audio": "input/song.mp3",
+  "srt": "input/song.srt",
+  "work": "work",
+  "publicAssets": "public/assets",
+  "composeSrc": "src/inkcut",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080
+}

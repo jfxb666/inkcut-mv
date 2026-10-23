@@ -1,0 +1,16 @@
+{
+  "_comment": "Shot -> duration and which reference image anchors it. Durations are whole seconds, 5..15; they do not have to match the shot length in shots.ts, the composition retimes the footage. Keep the sum close to your song length so the last shot is not starved.",
+  "ratio": "16:9",
+  "res": "768p",
+  "shots": [
+    { "id": "s01", "dur": 6, "ref": "man" },
+    { "id": "s02", "dur": 5, "ref": "man" },
+    { "id": "s03", "dur": 6, "ref": "man" },
+    { "id": "s04", "dur": 7, "ref": "man" },
+    { "id": "s05", "dur": 5, "ref": "man" },
+    { "id": "s06", "dur": 8, "ref": "woman" },
+    { "id": "s07", "dur": 8, "ref": "woman" },
+    { "id": "s08", "dur": 8, "ref": "woman" },
+    { "id": "s09", "dur": 7, "ref": "woman" }
+  ]
+}
