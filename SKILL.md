@@ -128,7 +128,8 @@ is minutes of CPU and, if you are iterating, wasted. Preview, get a decision, th
 
 node 20.19+ / 22.13+ / 24+, ffmpeg + ffprobe on PATH, python 3 with numpy.
 Optional: an Agnes key for still plates, a paba.tv session for performance footage. Without
-them you can still author, preview and render - every shot falls back to its still plate.
+them you can still author, preview and render - a shot falls back to its still plate, and a
+shot with no plate yet falls back to procedural ink art, so a fresh clone previews immediately.
 
 ## Layout
 

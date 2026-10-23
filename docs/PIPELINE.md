@@ -85,7 +85,10 @@ npm run sync        # publish + ffprobe-measure
 
 `plates` is not optional housekeeping. A shot with no clip must still be watchable, because the
 footage batch is slow and you will preview the film dozens of times before the last clip lands.
-Every shot therefore has a plate the composition falls back to automatically.
+Every shot therefore has a plate the composition falls back to automatically. Before the first
+plate exists the composition draws a procedural ink backdrop for that shot instead - abstract
+ridges and a horizon - so the timing and lyric sync are reviewable on a fresh clone with no
+generated art at all.
 
 `clips` is **idempotent by construction**: it re-reads the service's recent job list each round
 and matches jobs back to shots by their full normalised prompt, so it can be killed at any
