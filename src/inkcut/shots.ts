@@ -22,7 +22,8 @@ export type Shot = {
   id: string;
   start: number;
   end: number;
-  /** Indices into LYRICS carried by this shot. */
+  /** Indices into LYRICS carried by this shot. Declarative: the lyric layer keys off measured
+   *  times, so this documents the directing decision rather than driving rendering. */
   lyrics: number[];
   move: MoveKind;
   /** Extra parallax drift for the plate layer, in px over the shot. */

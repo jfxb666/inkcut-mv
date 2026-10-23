@@ -23,7 +23,7 @@ const force = process.argv.includes("--force");
 mkdirSync(C.plates, { recursive: true });
 mkdirSync(C.publicAssets, { recursive: true });
 
-const prompts = readdirSync(C.prompts).filter((f) => f.endsWith(".plate.txt")).sort();
+const prompts = (existsSync(C.prompts) ? readdirSync(C.prompts) : []).filter((f) => f.endsWith(".plate.txt")).sort();
 if (!prompts.length) {
   console.error(`no *.plate.txt in ${C.prompts} - write one prompt per shot first`);
   process.exit(1);

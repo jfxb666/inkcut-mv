@@ -23,10 +23,11 @@ if (!SKILL || !existsSync(join(SKILL, "scripts/setup-refs.mjs"))) {
 }
 
 const args = process.argv.slice(2);
+const refsDir = join(C.work, "refs");
 const pairs = args.length
   ? args
-  : readdirSync(join(C.work, "refs")).filter((f) => /\.(png|jpe?g)$/i.test(f))
-      .map((f) => f.replace(/\.[a-z]+$/i, "") + "=" + join(C.work, "refs", f));
+  : (existsSync(refsDir) ? readdirSync(refsDir).filter((f) => /\.(png|jpe?g)$/i.test(f)) : [])
+      .map((f) => f.replace(/\.[a-z]+$/i, "") + "=" + join(refsDir, f));
 if (!pairs.length) {
   console.error("no reference images: put PNGs in work/refs/ or pass key=path pairs");
   process.exit(1);

@@ -69,6 +69,7 @@ took more than ten minutes to find came from assuming a number. `docs/PITFALLS.m
 
 | file | contents |
 |---|---|
+| `docs/GUIDE.md` | **start here** - a walkthrough from clone to your own film, in Chinese (中文使用指南) |
 | `docs/PIPELINE.md` | the five stages, what each script does, what it writes |
 | `docs/PROMPTS.md` | how to write prompts that hold a style across nine generations |
 | `docs/NARRATIVE.md` | how to build a story spine instead of illustrating lyrics |

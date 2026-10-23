@@ -148,6 +148,12 @@ if os.path.exists(SRT):
         lines.append({"s": ts(m.group(1)), "e": ts(m.group(2)), "text": "".join(L[2:]).strip()})
 lines.sort(key=lambda z: z["s"])
 
+# Every timing in this pipeline descends from the subtitle cues, so an empty or missing SRT
+# must fail here instead of silently producing a film with no lyrics in it.
+if not lines:
+    sys.exit(f"no subtitle cues read from {SRT} - the pipeline needs one cue per sung line; "
+             "see docs/GUIDE.md 4.1")
+
 # The SRT is machine-transcribed and gets words wrong. An authoritative text file wins:
 # one lyric line per row, in sung order. Blank/comment rows are ignored.
 override = os.path.join(ROOT, "input", "lyrics.txt")

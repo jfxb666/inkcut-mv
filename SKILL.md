@@ -8,6 +8,9 @@ description: Produce a narrative, character-driven music video from a song file 
 Turn a song into a short narrative film. This skill encodes one working pipeline, end to
 end, including the failure modes that cost the most time.
 
+`docs/GUIDE.md` is the human-facing walkthrough (Chinese): clone, preview with no keys, then
+swap in your own song. Read it when the user is driving; read the rest of this file when you are.
+
 ## What this produces
 
 A 16:9 music video where:
@@ -141,7 +144,7 @@ public/tex/     ink masks + seamless paper and grain tiles (shipped)
 public/assets/  your song, fonts, plates, clips (gitignored)
 work/           prompts, refs, clips, analysis output (gitignored)
 example/dongmian/  a finished film: shot table, nine prompts, design doc, analysis
-docs/           PIPELINE, PROMPTS, NARRATIVE, QA, PITFALLS, FONTS
+docs/           GUIDE, PIPELINE, PROMPTS, NARRATIVE, QA, PITFALLS, FONTS
 ```
 
 ## Generator setup

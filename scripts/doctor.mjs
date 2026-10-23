@@ -36,7 +36,7 @@ if (py) {
 
 console.log("\ninputs");
 existsSync(C.audio) ? ok("audio " + C.audio) : fail(`audio missing: ${C.audio} (set "audio" in project.config.json)`);
-existsSync(C.srt) ? ok("srt " + C.srt) : warn("no srt - lyric lines must then come from input/lyrics.txt with times, see docs/PIPELINE.md");
+existsSync(C.srt) ? ok("srt " + C.srt) : fail(`srt missing: ${C.srt} (set "srt" in project.config.json) - one cue per sung line is what supplies every timing`);
 existsSync(join(C.ROOT, "input/lyrics.txt"))
   ? ok("authoritative lyrics input/lyrics.txt")
   : warn("no input/lyrics.txt - SRT text is used verbatim, which for machine transcripts is usually wrong");
