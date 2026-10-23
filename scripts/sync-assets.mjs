@@ -27,9 +27,10 @@ const planned = existsSync(planFile)
   ? JSON.parse(readFileSync(planFile, "utf8")).shots.map((s) => s.id)
   : [];
 const all = [...new Set([...ids, ...plates, ...planned])].sort();
+// Nothing generated yet is a normal state (fresh clone, or a project that only has a shot
+// plan). Write the table anyway so the project type-checks and previews with procedural art.
 if (!all.length) {
-  console.error("nothing to publish: work/clips/ is empty and there are no plates in " + C.publicAssets);
-  process.exit(1);
+  console.log("nothing generated yet - writing an empty shot table; shots will render as procedural art");
 }
 
 const rows = [];

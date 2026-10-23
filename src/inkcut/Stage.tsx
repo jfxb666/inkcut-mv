@@ -176,7 +176,9 @@ const InkDepth: React.FC<{ t: number; amount: number }> = ({ t, amount }) => (
 
 export const ShotLayer: React.FC<{ shot: Shot; t: number }> = ({ shot, t }) => {
   const { fps } = useVideoConfig();
-  const asset = SHOT_ASSETS[shot.id];
+  // The table is generated from what has actually been published, so a shot with no art yet
+  // has no entry. Fall back to procedural art rather than reading through undefined.
+  const asset = SHOT_ASSETS[shot.id] ?? { id: shot.id, clip: null, clipDur: 0, w: 0, h: 0, plate: null };
   const dur = shot.end - shot.start;
   const p = clamp01((t - shot.start) / Math.max(0.001, dur));
   const vocal = at(VOCAL, t);
