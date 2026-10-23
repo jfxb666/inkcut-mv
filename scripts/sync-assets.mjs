@@ -71,4 +71,6 @@ export const AUDIO_SRC = "assets/song${extname(C.audio)}";
 writeFileSync(join(C.composeSrc, "shotAssets.ts"), out);
 console.log(`published ${all.length} shots -> ${C.composeSrc}/shotAssets.ts`);
 console.log(`  with clip: ${ids.join(", ") || "(none)"}`);
-console.log(`  plate only: ${all.filter((i) => !ids.includes(i)).join(", ") || "(none)"}`);
+console.log(`  plate only: ${plates.join(", ") || "(none)"}`);
+const bare = all.filter((i) => !ids.includes(i) && !plates.includes(i));
+if (bare.length) console.log(`  procedural only: ${bare.join(", ")}`);

@@ -12,15 +12,15 @@ export type ShotAsset = {
 };
 
 export const SHOT_ASSETS: Record<string, ShotAsset> = {
-  s01: { id: "s01", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s01.png" },
-  s02: { id: "s02", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s02.png" },
-  s03: { id: "s03", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s03.png" },
-  s04: { id: "s04", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s04.png" },
-  s05: { id: "s05", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s05.png" },
-  s06: { id: "s06", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s06.png" },
-  s07: { id: "s07", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s07.png" },
-  s08: { id: "s08", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s08.png" },
-  s09: { id: "s09", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: "assets/plate_s09.png" },
+  s01: { id: "s01", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s02: { id: "s02", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s03: { id: "s03", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s04: { id: "s04", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s05: { id: "s05", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s06: { id: "s06", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s07: { id: "s07", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s08: { id: "s08", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
+  s09: { id: "s09", clip: null, clipDur: 0.0000, w: 0, h: 0, plate: null },
 };
 
 export const AUDIO_SRC = "assets/song.mp3";
