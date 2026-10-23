@@ -25,8 +25,16 @@ if (!SKILL || !existsSync(join(SKILL, "scripts/video.mjs"))) {
 }
 requirePabaSession(SKILL);
 
-const refs = JSON.parse(readFileSync(join(C.work, "refs.json"), "utf8"));
-const plan = JSON.parse(readFileSync(join(C.work, "shots.plan.json"), "utf8"));
+const readJson = (p, hint) => {
+  if (!existsSync(p)) {
+    console.error("missing " + p);
+    console.error(hint);
+    process.exit(1);
+  }
+  return JSON.parse(readFileSync(p, "utf8"));
+};
+const refs = readJson(join(C.work, "refs.json"), "run npm run refs first - it uploads the character stills and writes this file");
+const plan = readJson(join(C.work, "shots.plan.json"), "copy work/shots.plan.json from the repo, or write one: {\"shots\":[{\"id\":\"s01\",\"dur\":6,\"ref\":\"man\"}]}");
 const SHOTS = plan.shots;
 mkdirSync(C.clips, { recursive: true });
 
