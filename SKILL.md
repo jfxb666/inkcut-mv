@@ -159,3 +159,15 @@ export PABA_SKILL=/path/to/generating-video-with-paba-h3   # performance footage
 The Agnes CLI resolves its key from the **current directory** (`$AGNES_KEY` → `./.agnes_key` →
 `~/.agnes_key`), so `scripts/plates.mjs` always invokes it with `cwd` set to the project root.
 Put `.agnes_key` there, not next to the skill.
+
+The paba.tv session lives in [ego-browser](https://lite.ego.app), not in a browser these scripts
+launch. Sign in once, and it persists:
+
+```bash
+node $PABA_SKILL/scripts/ego.mjs status     # "prices": 200 means the session works
+node $PABA_SKILL/scripts/ego.mjs login      # on 401: hands the window to the user
+node $PABA_SKILL/scripts/ego.mjs takeover   # after signing in
+```
+
+`npm run refs` and `npm run clips` check that session up front and print those two commands
+instead of failing mid-batch with a bare 401.

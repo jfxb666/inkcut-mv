@@ -16,12 +16,14 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, mkdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { C } from "./config.mjs";
+import { requirePabaSession } from "./paba-session.mjs";
 
 const SKILL = process.env.PABA_SKILL;
 if (!SKILL || !existsSync(join(SKILL, "scripts/video.mjs"))) {
   console.error("set PABA_SKILL to the generating-video-with-paba-h3 skill directory");
   process.exit(1);
 }
+requirePabaSession(SKILL);
 
 const refs = JSON.parse(readFileSync(join(C.work, "refs.json"), "utf8"));
 const plan = JSON.parse(readFileSync(join(C.work, "shots.plan.json"), "utf8"));

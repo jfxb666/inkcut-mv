@@ -198,6 +198,18 @@ export PABA_SKILL=/path/to/generating-video-with-paba-h3   # 表演镜头
 Agnes 的 key 解析顺序是 `$AGNES_KEY` → `./.agnes_key` → `~/.agnes_key`，
 按**当前目录**找，所以 `.agnes_key` 放在项目根，不要放在 skill 目录里。
 
+paba.tv 的登录态住在 [ego-browser](https://lite.ego.app) 里（不是脚本自己起的浏览器）。
+第一次用要先手动登录一次，之后一直有效：
+
+```bash
+node $PABA_SKILL/scripts/ego.mjs status     # "prices": 200 表示会话可用
+node $PABA_SKILL/scripts/ego.mjs login      # 401 时执行，窗口交给用户登录
+node $PABA_SKILL/scripts/ego.mjs takeover   # 登录完成后收回控制权
+```
+
+`npm run refs` 与 `npm run clips` 启动时会先查这个会话，未登录就直接报上面两条命令，
+不会等到批量跑到一半才 401。
+
 ```bash
 npm run plates     # 每镜一张静帧 -> public/assets/plate_<id>.png
 npm run refs       # 上传角色定妆图 -> work/refs.json
